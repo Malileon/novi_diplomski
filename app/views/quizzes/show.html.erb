@@ -1,0 +1,23 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to topic"), topic_path(@quiz.topic) %>
+  <div class="header">
+    <h1>
+      <%= @quiz.name %>
+    </h1>
+  </div>
+
+  <%= turbo_frame_tag nested_dom_id(@topic, @quiz, "questions") do %>
+    <%= render @questions, question: @questions %>
+  <% end %>
+
+  <%= turbo_frame_tag nested_dom_id(@topic, @quiz, "new_question") %>
+  
+  <%= link_to "New Text Input Question",
+              new_topic_quiz_text_input_question_path(@topic, @quiz, @text_input_question),
+              data: { turbo_frame: nested_dom_id(@topic, @quiz, "new_question") },
+              class: "btn btn--primary" %>
+  <%= link_to "New Choice Question",
+              new_topic_quiz_choice_question_path(@topic, @quiz, @choice_question),
+              data: { turbo_frame: nested_dom_id(@topic, @quiz, "new_question") },
+              class: "btn btn--primary" %>
+</main>

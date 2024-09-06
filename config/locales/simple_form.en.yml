@@ -1,0 +1,32 @@
+en:
+  simple_form:
+    placeholders:
+      topic:
+        name: Name of your topic
+      text_input_question:
+        question_text: Question
+        answer: Answer
+      choice_question:
+        question_text: Question
+      choice:
+        is_correct: Is correct
+        value: Option
+    labels:
+      topic:
+        name: Name
+      quiz:
+        name: Name
+
+  helpers:
+    submit:
+      topic:
+        create: Create topic
+        update: Update topic
+      quiz:
+        create: Create quiz
+        update: Update quiz
+      text_input_question:
+        create: Create text question
+        update: Update text question
+      choice:
+        is_correct: Is correct

@@ -1,0 +1,16 @@
+<%= turbo_frame_tag topic do %>
+  <div class="topic">
+    <%= link_to topic.name, 
+                topic_path(topic), 
+                data: { turbo_frame: "_top" } %>
+    <div class="topic__actions">
+      <%= button_to "Delete",
+                    topic_path(topic),
+                    method: :delete,
+                    class: "btn btn--light" %>
+      <%= link_to "Edit",
+                  edit_topic_path(topic),
+                  class: "btn btn--light" %>
+    </div>
+  </div>
+<% end %>

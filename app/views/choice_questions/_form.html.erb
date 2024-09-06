@@ -1,0 +1,8 @@
+<%= simple_form_for [topic, quiz, choice_question], html: { class: "form quiz" } do |f| %>
+  <%= form_error_notification(choice_question) %>
+
+  <%= f.input :question_text, html5: true, input_html: { autofocus: true } %>
+  <%#= f.input :answer, html5: true %>
+  <%= link_to "Cancel", topic_quiz_path(topic, quiz), class: "btn btn--light" %>
+  <%= f.submit class: "btn btn--secondary" %>
+<% end %>

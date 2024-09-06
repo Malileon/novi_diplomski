@@ -1,0 +1,7 @@
+<%= turbo_stream.update nested_dom_id(@topic, @quiz, "new_question"), "" %>
+
+<%= turbo_stream.append nested_dom_id(@topic, @quiz, "questions") do %>
+  <%= render @text_input_question, topic: @topic, quiz: @quiz %>
+<% end %>
+
+<%= render_turbo_stream_flash_messages %>

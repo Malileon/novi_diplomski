@@ -1,0 +1,20 @@
+<%= turbo_stream_from "topics" %>
+<main class="container">
+  <div class="header">
+    <h1>Topics</h1>
+    <%= link_to "New topic",
+                new_topic_path,
+                class: "btn btn--primary",
+                data: { turbo_frame: dom_id(Topic.new) } %>
+  </div>
+
+  <%= turbo_frame_tag Topic.new do %>
+    <% if @topics.none? %>
+      <%= render "topics/empty_state" %>
+    <% end %>
+  <% end %>
+
+  <%= turbo_frame_tag "topics" do %>
+    <%= render @topics %>
+  <% end %>
+</main>

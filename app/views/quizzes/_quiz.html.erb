@@ -1,0 +1,21 @@
+<div class="quiz">
+  <div class="quiz__header">
+    <h2 class="quiz__title">
+      <%= link_to quiz.name, 
+                  topic_quiz_path(quiz), 
+                  data: { turbo_frame: "_top" } %>
+    </h2>
+
+    <%#TODO if user.role == admin or quiz.author == user.name %>
+    <div class="quiz__actions">
+      <%= button_to "Delete",
+                    [topic, quiz],
+                    method: :delete,
+                    class: "btn btn--light" %>
+
+      <%= link_to "Edit",
+                  [:edit, topic, quiz],
+                  class: "btn btn--light" %>
+    </div>
+  </div>
+</div>

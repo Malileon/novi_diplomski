@@ -1,0 +1,12 @@
+<main class="container">
+  <%#= link_to sanitize("&larr; Back to quote"), quote_path(@quote) %>
+
+  <div class="header">
+    <h1>Edit question</h1>
+  </div>
+
+  <%= render "form",
+             topic: @topic,
+             quiz: @quiz,
+             choice_question: @choice_question %>
+</main>

@@ -1,0 +1,12 @@
+<div class="question">
+  <%= text_input_question.question_text %>
+  <div class="question__actions">
+    <%= button_to "Delete",
+                  [@topic, @quiz, text_input_question],
+                  method: :delete,
+                  class: "btn btn--light" %>
+    <%= link_to "Edit",
+                [:edit, @topic, @quiz, text_input_question],
+                class: "btn btn--light" %>
+  </div>
+</div>

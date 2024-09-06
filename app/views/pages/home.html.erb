@@ -1,0 +1,9 @@
+<main class="container">
+  <h1>Quiz page</h1>
+
+  <% if user_signed_in? %>
+    <%= link_to "View topics", topics_path, class: "btn btn--dark" %>
+  <% else %>
+    <%= link_to "Sign in", new_user_session_path, class: "btn btn--dark" %>
+  <% end %>
+</main>

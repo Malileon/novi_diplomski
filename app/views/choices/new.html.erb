@@ -1,0 +1,13 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to choice question"), [@topic, @quiz] %>
+
+  <div class="header">
+    <h1>New choice for <%#=# Tu dodati choice quesiton text%></h1>
+  </div>
+
+  <%= render "form",
+             topic: @topic,
+             quiz: @quiz,
+             choice_question: @choice_question,
+             choice: @choice %>
+</main>

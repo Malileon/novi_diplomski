@@ -1,0 +1,20 @@
+<div class="question">
+  <%= choice_question.question_text %>
+  <div class="question__actions">
+    <%= button_to "Delete",
+                  [@topic, @quiz, choice_question],
+                  method: :delete,
+                  class: "btn btn--light" %>
+    <%= link_to "Edit",
+                [:edit, @topic, @quiz, choice_question],
+                class: "btn btn--light" %>
+  </div>
+
+  <% render choice_question.choice, topic: @topic, quiz: @quiz, choice_question: choice_question %>
+  
+  <div class="nesto_footer">
+    <%= link_to "Add choice", 
+                [:new, @topic, @quiz, choice_question, :choice],
+                class: "btn btn--primary" %>
+  </div>
+</div>

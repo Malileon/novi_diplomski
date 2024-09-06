@@ -1,0 +1,9 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to topic"), topic_path(@topic) %>¸
+
+  <div class="header">
+    <h1>New Quiz</h1>
+  </div>
+
+  <%= render "form", topic: @topic, quiz: @quiz%>
+</main>

@@ -1,0 +1,14 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to topics"), topics_path %>
+  <div class="header">
+    <h1>
+      <%= @topic.name %>
+    </h1>
+
+    <%= link_to "New Quiz",
+                new_topic_quiz_path(@topic),
+                class: "btn btn--primary" %>
+  </div>
+
+  <%= render @quizzes, topic: @topic %>
+</main>

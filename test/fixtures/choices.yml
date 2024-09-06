@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+first:
+  choice_question: first
+  value: First choice (true)
+  is_correct: true
+
+second:
+  choice_question: first
+  value: Second choice
+  is_correct: false

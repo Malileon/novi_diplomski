@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+first:
+  quiz: first
+  question_text: First choice question text
+
+second:
+  quiz: first
+  question_text: Second choice question text

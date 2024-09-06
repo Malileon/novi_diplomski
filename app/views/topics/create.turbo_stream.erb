@@ -1,0 +1,3 @@
+<%= turbo_stream.prepend "topics", @topic %>
+<%= turbo_stream.update Topic.new, "" %>
+<%= render_turbo_stream_flash_messages %>

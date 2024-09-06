@@ -1,0 +1,11 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to topics"), topics_path %>
+
+  <div class="header">
+    <h1>New topic</h1>
+  </div>
+  
+  <%= turbo_frame_tag @topic do %>
+    <%= render "form", topic: @topic %>
+  <% end %>
+</main>
