@@ -78,12 +78,12 @@
   &--form {
     box-shadow: var(--shadow-small);
 
-    .line-item__quantity,
-    .line-item__price {
+    .choice__quantity,
+    .choice__price {
       display: block;
     }
 
-    .line-item__description {
+    .choice__description {
       order: 2;
     }
   }

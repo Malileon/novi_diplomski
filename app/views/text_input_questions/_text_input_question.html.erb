@@ -1,12 +1,15 @@
-<div class="question">
-  <%= text_input_question.question_text %>
-  <div class="question__actions">
-    <%= button_to "Delete",
-                  [@topic, @quiz, text_input_question],
-                  method: :delete,
+<%= turbo_frame_tag nested_dom_id(@topic, @quiz, text_input_question) do %>
+  <div class="question">
+    <%= text_input_question.question_text %>
+    <div class="question__actions">
+      <%= button_to "Delete",
+                    [@topic, @quiz, text_input_question],
+                    method: :delete,
+                    class: "btn btn--light" %>
+      <%= link_to "Edit",
+                  [:edit, @topic, @quiz, text_input_question],
+                  data: { turbo_frame: nested_dom_id(@topic, @quiz, text_input_question) },
                   class: "btn btn--light" %>
-    <%= link_to "Edit",
-                [:edit, @topic, @quiz, text_input_question],
-                class: "btn btn--light" %>
+    </div>
   </div>
-</div>
+<% end %>

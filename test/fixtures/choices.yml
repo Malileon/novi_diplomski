@@ -3,9 +3,9 @@
 first:
   choice_question: first
   value: First choice (true)
-  is_correct: true
+  is_correct: 1
 
 second:
   choice_question: first
   value: Second choice
-  is_correct: false
+  is_correct: 0

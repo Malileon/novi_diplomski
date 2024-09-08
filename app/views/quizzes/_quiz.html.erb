@@ -2,7 +2,7 @@
   <div class="quiz__header">
     <h2 class="quiz__title">
       <%= link_to quiz.name, 
-                  topic_quiz_path(quiz), 
+                  topic_quiz_path(topic, quiz), 
                   data: { turbo_frame: "_top" } %>
     </h2>
 

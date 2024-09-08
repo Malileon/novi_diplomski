@@ -15,6 +15,10 @@ module Questionable
     end
   end
 
+  def get_type
+    self.class.name
+  end
+
   def get_choices
     #TODO: napravi choices model bla bla
   end

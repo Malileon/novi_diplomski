@@ -5,8 +5,10 @@
     <h1>Edit question</h1>
   </div>
 
-  <%= render "form",
-             topic: @topic,
-             quiz: @quiz,
-             text_input_question: @text_input_question %>
+  <%= turbo_frame_tag nested_dom_id(@topic, @quiz, @text_input_question) do %>
+    <%= render "form",
+              topic: @topic,
+              quiz: @quiz,
+              text_input_question: @text_input_question %>
+  <% end %>
 </main>

@@ -7,7 +7,7 @@
   </div>
 
   <%= turbo_frame_tag nested_dom_id(@topic, @quiz, "questions") do %>
-    <%= render @questions, question: @questions %>
+    <%= render @questions, question: @questions, choices: @choices %>
   <% end %>
 
   <%= turbo_frame_tag nested_dom_id(@topic, @quiz, "new_question") %>

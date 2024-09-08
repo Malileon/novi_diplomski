@@ -4,9 +4,13 @@ class QuizzesController < ApplicationController
   before_action :set_quiz, only:[:destroy, :show]
   
   def show
-    @questions = @quiz.text_input_question.where(quiz_id: params[:id])
-    @questions += @quiz.choice_question.where(quiz_id: params[:id])
-    @questions = @questions.sort_by{|obj| obj.created_at }
+    @questions = @quiz.get_questions(@quiz, params[:id])
+    @choices = []
+    @questions.each do |question|
+      if question.get_type == "ChoiceQuestion"
+        @choices += question.choice
+      end
+    end
   end
 
   def new

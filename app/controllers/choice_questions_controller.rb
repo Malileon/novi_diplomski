@@ -1,6 +1,7 @@
 class ChoiceQuestionsController < ApplicationController
   before_action :set_topic, :set_quiz
   before_action :set_choice_question, only: [:show, :edit, :update, :destroy]
+  before_action :set_choices, only: [:show, :edit, :update, :destroy]
 
   def new
     @choice_question = @quiz.choice_question.build
@@ -28,7 +29,10 @@ class ChoiceQuestionsController < ApplicationController
 
   def update
     if @choice_question.update(choice_question_params)
-      redirect_to topic_quiz_path(@topic, @quiz), notice: "Question successfully updated."
+      respond_to do |format|
+        format.html { redirect_to topic_quiz_path(@topic, @quiz), notice: "Question successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Question successfully updated." }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -37,7 +41,10 @@ class ChoiceQuestionsController < ApplicationController
   def destroy
     @choice_question.destroy
 
-    redirect_to topic_quiz_path(@topic, @quiz), notice: "Question successfully destroyed."
+    respond_to do |format|
+      format.html { redirect_to topic_quiz_path(@topic, @quiz), notice: "Question successfully destroyed." }
+      format.turbo_stream { flash.now[:notice] = "Quesiton successfully destroyed." }
+    end
   end
 
   private

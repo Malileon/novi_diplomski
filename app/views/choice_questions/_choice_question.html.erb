@@ -1,20 +1,34 @@
-<div class="question">
-  <%= choice_question.question_text %>
-  <div class="question__actions">
-    <%= button_to "Delete",
-                  [@topic, @quiz, choice_question],
-                  method: :delete,
-                  class: "btn btn--light" %>
-    <%= link_to "Edit",
-                [:edit, @topic, @quiz, choice_question],
-                class: "btn btn--light" %>
-  </div>
+<%= turbo_frame_tag nested_dom_id(@topic, @quiz, choice_question) do %>
+  <div class="quiz__body">
+    <div class="quiz__header">
+      <%= choice_question.question_text %>
+        <% if @current_user.id == @quiz.user_id %>
+          <div class="quiz__actions">
+            <%= button_to "Delete",
+                          [@topic, @quiz, choice_question],
+                          method: :delete,
+                          class: "btn btn--light" %>
+            <%= link_to "Edit",
+                        [:edit, @topic, @quiz, choice_question],
+                        data: { turbo_frame: nested_dom_id(@topic, @quiz, choice_question) },
+                        class: "btn btn--light" %>
+          </div>
+        <% end %>
+    </div>
 
-  <% render choice_question.choice, topic: @topic, quiz: @quiz, choice_question: choice_question %>
-  
-  <div class="nesto_footer">
-    <%= link_to "Add choice", 
-                [:new, @topic, @quiz, choice_question, :choice],
-                class: "btn btn--primary" %>
+    <%= turbo_frame_tag nested_dom_id(@topic, @quiz, choice_question, "choices") do %>
+      <%= render choices, topic: @topic, quiz: @quiz, choice_question: choice_question %>
+    <% end %>
+
+    <%= turbo_frame_tag nested_dom_id(@topic, @quiz, choice_question, "new_choice") %>
+
+    <% if @current_user.id == @quiz.user_id %>
+      <div class="nesto_footer">
+        <%= link_to "Add choice", 
+                    [:new, @topic, @quiz, choice_question, :choice],
+                    data: { turbo_frame: nested_dom_id(@topic, @quiz, choice_question, "new_choice") },
+                    class: "btn btn--primary" %>
+      </div>
+    <% end %>
   </div>
-</div>
+<% end %>

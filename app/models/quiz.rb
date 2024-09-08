@@ -7,4 +7,10 @@ class Quiz < ApplicationRecord
   validates :name, presence: true
 
   scope :ordered, -> { order(name: :asc) }
+
+  def get_questions(quiz, quiz_id)
+    @questions = quiz.text_input_question.where(quiz_id: quiz_id)
+    @questions += quiz.choice_question.where(quiz_id: quiz_id)
+    @questions = @questions.sort_by{|obj| obj.created_at }
+  end
 end

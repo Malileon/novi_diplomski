@@ -24,7 +24,10 @@ class TextInputQuestionsController < ApplicationController
 
   def update
     if @text_input_question.update(text_input_question_params)
-      redirect_to topic_quiz_path(@topic, @quiz), notice: "Question successfully updated."
+      respond_to do |format|
+        format.html { redirect_to topic_quiz_path(@topic, @quiz), notice: "Question successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Question successfully updated." }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -33,7 +36,10 @@ class TextInputQuestionsController < ApplicationController
   def destroy
     @text_input_question.destroy
 
-    redirect_to topic_quiz_path(@topic, @quiz), notice: "Question successfully destroyed."
+    respond_to do |format|
+      format.html { redirect_to topic_quiz_path(@topic, @quiz), notice: "Question successfully destroyed." }
+      format.turbo_stream { flash.now[:notice] = "Question successfully destroyed." }
+    end
   end
 
   private
