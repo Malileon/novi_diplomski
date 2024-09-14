@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :topics do
     resources :quizzes do
+      resources :quiz_sessions, except: [:index, :destroy, :edit, :update]
       resources :text_input_questions, except: [:index, :show]
       resources :choice_questions, except: [:index, :show] do
         resources :choices, except: [:index, :show]

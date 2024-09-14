@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_04_154811) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_14_142057) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,7 +19,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_04_154811) do
     t.string "question_text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["id", "quiz_id"], name: "index_choice_questions_on_id_and_quiz_id", unique: true
     t.index ["quiz_id"], name: "index_choice_questions_on_quiz_id"
+    t.check_constraint "id <> quiz_id", name: "choice_question_id_not_quiz_id"
+    t.unique_constraint ["id"], name: "unique_choice_question_id"
   end
 
   create_table "choices", force: :cascade do |t|
@@ -29,6 +32,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_04_154811) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["choice_question_id"], name: "index_choices_on_choice_question_id"
+  end
+
+  create_table "quiz_sessions", force: :cascade do |t|
+    t.bigint "quiz_id", null: false
+    t.bigint "user_id"
+    t.string "user_type", null: false
+    t.string "guest_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "points", precision: 10, scale: 2, null: false
+    t.index ["quiz_id"], name: "index_quiz_sessions_on_quiz_id"
+    t.index ["user_id"], name: "index_quiz_sessions_on_user_id"
   end
 
   create_table "quizzes", force: :cascade do |t|
@@ -47,7 +62,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_04_154811) do
     t.string "answer", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["id", "quiz_id"], name: "index_text_input_questions_on_id_and_quiz_id", unique: true
     t.index ["quiz_id"], name: "index_text_input_questions_on_quiz_id"
+    t.check_constraint "id <> quiz_id", name: "text_input_question_id_not_quiz_id"
+    t.unique_constraint ["id"], name: "unique_text_input_question_id"
   end
 
   create_table "topics", force: :cascade do |t|
@@ -70,6 +88,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_04_154811) do
 
   add_foreign_key "choice_questions", "quizzes"
   add_foreign_key "choices", "choice_questions"
+  add_foreign_key "quiz_sessions", "quizzes"
+  add_foreign_key "quiz_sessions", "users"
   add_foreign_key "quizzes", "topics"
   add_foreign_key "quizzes", "users"
   add_foreign_key "text_input_questions", "quizzes"

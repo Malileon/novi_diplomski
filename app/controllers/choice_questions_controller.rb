@@ -1,7 +1,7 @@
 class ChoiceQuestionsController < ApplicationController
   before_action :set_topic, :set_quiz
   before_action :set_choice_question, only: [:show, :edit, :update, :destroy]
-  before_action :set_choices, only: [:show, :edit, :update, :destroy]
+  # before_action :set_choices, only: [:show, :edit, :update, :destroy]
 
   def new
     @choice_question = @quiz.choice_question.build

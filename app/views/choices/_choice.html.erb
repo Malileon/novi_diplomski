@@ -3,17 +3,22 @@
     <div class="choice">
       <div class="choice__name">
         <%= choice.value %>
+        <% if choice.is_correct == 1 and quiz_owner(@quiz) %>
+          <span> - This answer is correct</span>
+        <% end %>
       </div>
-      <div class="choice__actions">
-        <%= button_to "Delete",
-                      [topic, quiz, choice_question, choice],
-                      method: :delete,
+      <% if quiz_owner(@quiz) %>
+        <div class="choice__actions">
+          <%= button_to "Delete",
+                        [@topic, @quiz, choice_question, choice],
+                        method: :delete,
+                        class: "btn btn--light" %>
+          <%= link_to "Edit",
+                      [:edit, @topic, @quiz, choice_question, choice], 
+                      data: { turbo_frame: nested_dom_id(@topic, @quiz, choice_question, choice) },
                       class: "btn btn--light" %>
-        <%= link_to "Edit",
-                    [:edit, topic, quiz, choice_question, choice], 
-                    data: { turbo_frame: nested_dom_id(@topic, @quiz, choice_question, choice) },
-                    class: "btn btn--light" %>
-      </div>
+        </div>
+      <% end %>
     </div>
   <% end %>
 <% end %>

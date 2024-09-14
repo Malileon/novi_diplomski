@@ -1,15 +1,23 @@
 <%= turbo_frame_tag nested_dom_id(@topic, @quiz, text_input_question) do %>
-  <div class="question">
-    <%= text_input_question.question_text %>
-    <div class="question__actions">
-      <%= button_to "Delete",
-                    [@topic, @quiz, text_input_question],
-                    method: :delete,
-                    class: "btn btn--light" %>
-      <%= link_to "Edit",
-                  [:edit, @topic, @quiz, text_input_question],
-                  data: { turbo_frame: nested_dom_id(@topic, @quiz, text_input_question) },
-                  class: "btn btn--light" %>
+  <div class="quiz__body">
+    <div class="quiz__header">
+      <%= text_input_question.question_text %>
+        <% if quiz_owner(@quiz) %>
+          <div class="quiz__actions">
+            <%= button_to "Delete",
+                          [@topic, @quiz, text_input_question],
+                          method: :delete,
+                          class: "btn btn--light" %>
+            <%= link_to "Edit",
+                        [:edit, @topic, @quiz, text_input_question],
+                        data: { turbo_frame: nested_dom_id(@topic, @quiz, text_input_question) },
+                        class: "btn btn--light" %>
+          </div>
+        </div>
+        <div class="choice__name">
+          Correct answer is: <%= text_input_question.answer %>
+        </div>
+      <% end %>
     </div>
   </div>
 <% end %>

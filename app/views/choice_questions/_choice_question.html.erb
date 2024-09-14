@@ -2,27 +2,29 @@
   <div class="quiz__body">
     <div class="quiz__header">
       <%= choice_question.question_text %>
-        <% if @current_user.id == @quiz.user_id %>
-          <div class="quiz__actions">
-            <%= button_to "Delete",
-                          [@topic, @quiz, choice_question],
-                          method: :delete,
-                          class: "btn btn--light" %>
-            <%= link_to "Edit",
-                        [:edit, @topic, @quiz, choice_question],
-                        data: { turbo_frame: nested_dom_id(@topic, @quiz, choice_question) },
+      <% if quiz_owner(@quiz) %>
+        <div class="quiz__actions">
+          <%= button_to "Delete",
+                        [@topic, @quiz, choice_question],
+                        method: :delete,
                         class: "btn btn--light" %>
-          </div>
+          <%= link_to "Edit",
+                      [:edit, @topic, @quiz, choice_question],
+                      data: { turbo_frame: nested_dom_id(@topic, @quiz, choice_question) },
+                      class: "btn btn--light" %>
+        </div>
         <% end %>
     </div>
 
     <%= turbo_frame_tag nested_dom_id(@topic, @quiz, choice_question, "choices") do %>
-      <%= render choices, topic: @topic, quiz: @quiz, choice_question: choice_question %>
+      <% if defined?(choices) %>
+        <%= render choices, topic: @topic, quiz: @quiz, choice_question: choice_question %>
+      <% end %>
     <% end %>
 
     <%= turbo_frame_tag nested_dom_id(@topic, @quiz, choice_question, "new_choice") %>
 
-    <% if @current_user.id == @quiz.user_id %>
+    <% if quiz_owner(@quiz) %>
       <div class="nesto_footer">
         <%= link_to "Add choice", 
                     [:new, @topic, @quiz, choice_question, :choice],

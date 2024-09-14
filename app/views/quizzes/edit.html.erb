@@ -1,0 +1,11 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to topic"), topic_path(@topic) %>
+
+  <div class="header">
+    <h1>Edit quiz</h1>
+  </div>
+  
+  <%= turbo_frame_tag nested_dom_id(@topic, @quiz) do %>
+    <%= render "form", topic: @topic, quiz: @quiz %>
+  <% end %>
+</main>

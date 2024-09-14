@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-first:
+firstText:
   quiz: first
   question_text: First text question text
   answer: Answer1
 
-second:
+secondText:
   quiz: first
   question_text: Second text question text
   answer: Answer2

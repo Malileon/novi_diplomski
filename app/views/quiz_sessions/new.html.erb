@@ -1,29 +1,28 @@
 <main class="container">
-  <%= link_to sanitize("&larr; Back to topic"), topic_path(@quiz.topic) %>
+  <%= link_to sanitize("&larr; Back to quiz"), topic_quiz_path(@quiz, @quiz.topic) %>
   <div class="header">
     <h1>
+      You are curently answering
       <%= @quiz.name %>
     </h1>
   </div>
 
   <%= turbo_frame_tag nested_dom_id(@topic, @quiz, "questions") do %>
-    <%= render @questions, question: @questions, choices: @choices %>
+    <%= render "form", topic: @topic, quiz: @quiz, questions: @questions, choices: @choices %>
   <% end %>
 
-  <%= turbo_frame_tag nested_dom_id(@topic, @quiz, "new_question") %>
-  
-  <% if quiz_owner(@quiz) %>
-    <%= link_to "New Text Input Question",
+  <%# if quiz_owner(@quiz) %>
+    <%#= link_to "New Text Input Question",
                 new_topic_quiz_text_input_question_path(@topic, @quiz, @text_input_question),
                 data: { turbo_frame: nested_dom_id(@topic, @quiz, "new_question") },
                 class: "btn btn--primary" %>
-    <%= link_to "New Choice Question",
+    <%#= link_to "New Choice Question",
                 new_topic_quiz_choice_question_path(@topic, @quiz, @choice_question),
                 data: { turbo_frame: nested_dom_id(@topic, @quiz, "new_question") },
                 class: "btn btn--primary" %>
-  <% end %>
+  <%# end %>
 
-  <%= link_to "Start quiz",
+  <%#= link_to "Start quiz",
               new_topic_quiz_quiz_session_path(@topic, @quiz),
               data: { turbo_frame: "_top" },
               class: "btn btn--primary" %>

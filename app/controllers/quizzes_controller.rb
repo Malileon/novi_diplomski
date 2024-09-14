@@ -1,10 +1,10 @@
 class QuizzesController < ApplicationController
   before_action :set_user
-  before_action :set_topic, only:[:show, :new, :create]
-  before_action :set_quiz, only:[:destroy, :show]
+  before_action :set_topic, only:[:show, :new, :create, :edit]
+  before_action :set_quiz, only:[:destroy, :show, :edit]
   
   def show
-    @questions = @quiz.get_questions(@quiz, params[:id])
+    @questions = @quiz.get_questions(@quiz)
     @choices = []
     @questions.each do |question|
       if question.get_type == "ChoiceQuestion"
@@ -21,11 +21,16 @@ class QuizzesController < ApplicationController
     @quiz = @topic.quizzes.build(quiz_params)
 
     if @quiz.save
-      #TODO Ovo nece biti topic_path
-      redirect_to topic_path(@topic), notice: "Quiz was successfully created."
+      respond_to do |format|
+        format.html { redirect_to topic_path(@topic), notice: "Quiz was successfully created." }
+        format.turbo_stream { flash.now[:notice] = "Quiz was successfully created." }
+      end
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
   end
 
   def destroy

@@ -3,7 +3,6 @@
 
   <%= f.input :value, input_html: { autofocus: true } %>
   <%#= f.label :pitanje, label: "Is this choice correct?" %>
-  <%#= f.check_box :is_correct, label: "test" %>
   <%= f.input :is_correct, as: :boolean %>
   <%= link_to "Cancel", topic_quiz_path(topic, quiz), class: "btn btn--light" %>
   <%= f.submit class: "btn btn--secondary" %>
