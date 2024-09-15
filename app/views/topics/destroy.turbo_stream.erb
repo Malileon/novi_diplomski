@@ -4,7 +4,6 @@
 <%#TODO: Napraviti da ovo rads turbom%>
 <% unless Topic.first %>
   <% turbo_stream.update Topic.new do %>
-    <% puts "AAAAAAAAAAAAAAAAAAA" %>
     <%= render "topics/empty_state" %>
   <% end %>
 <% end %>

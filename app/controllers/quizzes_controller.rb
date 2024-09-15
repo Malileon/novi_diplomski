@@ -1,7 +1,7 @@
 class QuizzesController < ApplicationController
   before_action :set_user
-  before_action :set_topic, only:[:show, :new, :create, :edit]
-  before_action :set_quiz, only:[:destroy, :show, :edit]
+  before_action :set_topic
+  before_action :set_quiz, only:[:destroy, :show, :edit, :update]
   
   def show
     @questions = @quiz.get_questions(@quiz)
@@ -33,10 +33,24 @@ class QuizzesController < ApplicationController
   def edit
   end
 
+  def update
+    if @quiz.update(quiz_params)
+      respond_to do |format|
+        format.html { redirect_to topics_path, notice: "Quiz was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Quiz was successfully updated." }
+      end
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @quiz.destroy
     
-    redirect_to topic_path(@topic), notice: "Quiz successfully destroyed."
+    respond_to do |format|
+      format.html { redirect_to topic_path(@topic), notice: "Quiz successfully destroyed." }
+      format.turbo_stream { flash.now[:notice] = "Quiz successfully destroyed." }
+    end
   end
 
   private

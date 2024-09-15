@@ -22,9 +22,4 @@
                 data: { turbo_frame: nested_dom_id(@topic, @quiz, "new_question") },
                 class: "btn btn--primary" %>
   <% end %>
-
-  <%= link_to "Start quiz",
-              new_topic_quiz_quiz_session_path(@topic, @quiz),
-              data: { turbo_frame: "_top" },
-              class: "btn btn--primary" %>
 </main>

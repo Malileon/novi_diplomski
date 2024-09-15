@@ -5,10 +5,10 @@
     <h1>Edit question</h1>
   </div>
 
-  <%= turbo_frame_tag nested_dom_id(@topic, @quiz, @choice_question) do %>
-    <%= render "form",
-              topic: @topic,
-              quiz: @quiz,
-              choice_question: @choice_question %>
+  <%= turbo_frame_tag dom_id(@choice_question, :edit) do %>
+      <%= render "form",
+                topic: @topic,
+                quiz: @quiz,
+                choice_question: @choice_question %>
   <% end %>
 </main>

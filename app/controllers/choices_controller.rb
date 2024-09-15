@@ -27,8 +27,8 @@ class ChoicesController < ApplicationController
   def update
     if @choice.update(choice_params)
       respond_to do |format|
-        format.html { redirect_to topic_quiz_path(@topic, @quiz), notice: "Choice successfully updated."; puts "html" }
-        format.turbo_stream { flash.now[:notice] = "Choice successfully updated."; puts "turbostream" }
+        format.html { redirect_to topic_quiz_path(@topic, @quiz), notice: "Choice successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Choice successfully updated." }
       end
     end
   end

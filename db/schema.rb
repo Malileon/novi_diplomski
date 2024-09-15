@@ -35,14 +35,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_14_142057) do
   end
 
   create_table "quiz_sessions", force: :cascade do |t|
-    t.bigint "quiz_id", null: false
+    t.string "quiz_id"
     t.bigint "user_id"
     t.string "user_type", null: false
     t.string "guest_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "points", precision: 10, scale: 2, null: false
-    t.index ["quiz_id"], name: "index_quiz_sessions_on_quiz_id"
     t.index ["user_id"], name: "index_quiz_sessions_on_user_id"
   end
 
@@ -88,7 +87,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_14_142057) do
 
   add_foreign_key "choice_questions", "quizzes"
   add_foreign_key "choices", "choice_questions"
-  add_foreign_key "quiz_sessions", "quizzes"
   add_foreign_key "quiz_sessions", "users"
   add_foreign_key "quizzes", "topics"
   add_foreign_key "quizzes", "users"

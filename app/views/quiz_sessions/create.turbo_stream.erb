@@ -1,0 +1,10 @@
+<%= turbo_stream.replace nested_dom_id(@quiz.topic, @quiz, "header") do %>
+  <div class="header"><h1>You are curently viewing <%= @quiz.name %> results</h1></div>
+  <h2>Your score is <%= @quiz_session.points %>/<%= @quiz.get_filled_questions_count %>.</h2>
+<% end %>
+
+<%= turbo_stream.replace nested_dom_id(@quiz.topic, @quiz, "questions") do %>
+  <%= render @quiz.get_questions(@quiz), user_answers: params[:quiz_session][:answers] %>
+<% end %>
+
+<% render_turbo_stream_flash_messages %>

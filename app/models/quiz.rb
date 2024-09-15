@@ -14,4 +14,14 @@ class Quiz < ApplicationRecord
     @questions += quiz.choice_question.where(quiz_id: quiz.id)
     @questions = @questions.sort_by{|obj| obj.created_at }
   end
+
+  def get_filled_questions_count
+    empty = 0
+    questions = self.choice_question.where(quiz_id: self.id)
+    questions.each do |question|
+      empty += 1 if question.choice.empty?
+    end
+    questions += self.text_input_question.where(quiz_id: self.id)
+    questions.count - empty
+  end
 end

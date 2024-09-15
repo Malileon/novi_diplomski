@@ -1,6 +1,6 @@
 .choice {
   display: flex;
-  align-items: start;
+  align-items: center;
   flex-wrap: wrap;
   background-color: var(--color-white);
 
@@ -15,19 +15,17 @@
 
   &__name {
     flex: 1 1 100%;
-    font-weight: bold;
 
     @include media(tabletAndUp) {
       flex: 1 1 0;
     }
   }
 
-  &__description {
+  &__corr-answers {
     flex-basis: 100%;
     max-width: 100%;
     color: var(--color-text-muted);
-    font-weight: normal;
-    font-size: var(--font-size-s);
+    font-weight: bold;
   }
 
   &__quantity-price {

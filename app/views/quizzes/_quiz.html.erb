@@ -1,23 +1,35 @@
 <%= turbo_frame_tag nested_dom_id(@topic, quiz) do %>
-  <div class="quiz">
-    <div class="quiz__header">
+  <div class="quiz__header">
+    <% if quiz_owner(quiz) %>
       <h2 class="quiz__title">
         <%= link_to quiz.name, 
-                    topic_quiz_path(topic, quiz), 
+                    topic_quiz_path(@topic, quiz), 
                     data: { turbo_frame: "_top" } %>
       </h2>
-
-      <%#TODO if user.role == admin or quiz.author == user.name %>
       <div class="quiz__actions">
         <%= button_to "Delete",
-                      [topic, quiz],
+                      [@topic, quiz],
                       method: :delete,
                       class: "btn btn--light" %>
 
         <%= link_to "Edit",
-                    [:edit, topic, quiz],
+                    [:edit, @topic, quiz],
                     class: "btn btn--light" %>
+                    
+        <%= link_to "Preview quiz",
+                    new_topic_quiz_quiz_session_path(@topic, quiz),
+                    data: { turbo_frame: "_top" },
+                    class: "btn btn--primary" %>
       </div>
-    </div>
+    <% else %>
+      <h2 class="quiz__title">
+        <%= quiz.name %>
+      </h2>
+
+      <%= link_to "Start quiz",
+                  new_topic_quiz_quiz_session_path(@topic, quiz),
+                  data: { turbo_frame: "_top" },
+                  class: "btn btn--primary" %>
+    <% end %>
   </div>
 <% end %>

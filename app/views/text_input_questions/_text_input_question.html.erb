@@ -2,6 +2,33 @@
   <div class="quiz__body">
     <div class="quiz__header">
       <%= text_input_question.question_text %>
+      <% if defined?(user_answers) %>
+        </div>
+        <div class="choice__name">
+          <% if text_input_question.answer.to_s == user_answers.fetch(text_input_question.id.to_s).strip %>
+            You answered this question correctly: 
+            <span class="choice__corr-answers">
+              <%= text_input_question.answer.to_s %>
+            </span>.
+          <% else %>
+            <% if user_answers.fetch(text_input_question.id.to_s) != "" %>
+              Your answer to this question was:  
+              <span class="choice__corr-answers">
+                <%= user_answers.fetch(text_input_question.id.to_s).strip %>
+              </span>
+              , but the correct answer is: 
+              <span class="choice__corr-answers">
+                <%= text_input_question.answer.to_s %>
+              </span>.
+            <% else %>
+              You left this question empty. Correct answer is 
+              <span class="choice__corr-answers">
+                <%= text_input_question.answer.to_s %>
+              </span>.
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
         <% if quiz_owner(@quiz) %>
           <div class="quiz__actions">
             <%= button_to "Delete",

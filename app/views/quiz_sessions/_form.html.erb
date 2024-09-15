@@ -1,21 +1,23 @@
 <%= form_with(url: topic_quiz_quiz_sessions_path(@topic, @quiz), method: :post, local: true) do |form| %>
   <% @questions.each do |question| %>
     <div class="question">
-      <h3><%= question.question_text %></h3>
-      
       <% if question.get_type == 'TextInputQuestion' %>
+        <h3><%= question.question_text %></h3>
         <%= form.text_field "quiz_session[answers][#{question.id}]", placeholder: "Enter your answer" %>
       
       <% elsif question.get_type == 'ChoiceQuestion' %>
-        <% question.choice.each do |choice| %>
-          <div>
-            <%= form.check_box "quiz_session[answers][#{question.id}]", { multiple: true }, choice.id, nil %>
-            <%= form.label "quiz_session[answers][#{question.id}]", choice.value %>
-          </div>
+        <% unless question.choice.empty? %>
+        <h3><%= question.question_text %></h3>
+          <% question.choice.each do |choice| %>
+            <div>
+              <%= form.check_box "quiz_session[answers][#{question.id}]", { multiple: true }, choice.id, nil %>
+              <%= form.label "quiz_session[answers][#{question.id}]", choice.value %>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
     </div>
   <% end %>
 
-  <%= form.submit "Submit Answers" %>
+  <%= form.submit "Submit Answers", { turbo: false } %>
 <% end %>

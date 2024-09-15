@@ -2,10 +2,12 @@
 <main class="container">
   <div class="header">
     <h1>Topics</h1>
-    <%= link_to "New topic",
-                new_topic_path,
-                class: "btn btn--primary",
-                data: { turbo_frame: dom_id(Topic.new) } %>
+    <%# if admin TODO... %>
+      <%= link_to "New topic",
+                  new_topic_path,
+                  class: "btn btn--primary",
+                  data: { turbo_frame: dom_id(Topic.new) } %>
+    <%# end %>
   </div>
 
   <%= turbo_frame_tag Topic.new do %>

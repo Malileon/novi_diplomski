@@ -1,0 +1,5 @@
+<%= turbo_stream.replace nested_dom_id(@topic, @quiz) do %>
+  <%= render @quiz, topic: @topic, quiz: @quiz %>
+<% end %>
+
+<%= render_turbo_stream_flash_messages %>

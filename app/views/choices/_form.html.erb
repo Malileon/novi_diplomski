@@ -1,9 +1,9 @@
-<%= simple_form_for [topic, quiz, choice_question, choice], html: { class: "form choice choice--form" } do |f| %>
+<%= simple_form_for [topic, quiz, choice_question, choice], html: { class: "form choice" } do |f| %>
   <%= form_error_notification(choice_question) %>
 
   <%= f.input :value, input_html: { autofocus: true } %>
-  <%#= f.label :pitanje, label: "Is this choice correct?" %>
-  <%= f.input :is_correct, as: :boolean %>
+  <%= f.label :pitanje, label: "Is this choice correct?" %>
+  <%= f.input :is_correct, as: :boolean, wrapper: false %>
   <%= link_to "Cancel", topic_quiz_path(topic, quiz), class: "btn btn--light" %>
   <%= f.submit class: "btn btn--secondary" %>
 <% end %>
