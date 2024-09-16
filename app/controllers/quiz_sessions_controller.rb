@@ -20,13 +20,16 @@ class QuizSessionsController < ApplicationController
     @quiz_session = @quiz.quiz_sessions.build(quiz_session_params)
     points = @quiz_session.evaluate(params[:quiz_session][:answers], @quiz)
     @quiz_session.points = points
-    if @quiz_session.save
-      respond_to do |format|
-        format.html { redirect_to topic_quiz_path(@topic, @quiz), notice: "Quiz successfully submitted." }
-        format.turbo_stream { flash.now[:notice] = "Quiz successfully submitted." }
+
+    unless @quiz.user_id == current_user.id
+      if @quiz_session.save
+        respond_to do |format|
+          format.html { redirect_to topic_quiz_path(@topic, @quiz), notice: "Quiz successfully submitted." }
+          format.turbo_stream { flash.now[:notice] = "Quiz successfully submitted." }
+        end
+      else
+        render :new, status: :unprocessable_entity
       end
-    else
-      render :new, status: :unprocessable_entity
     end
   end
 

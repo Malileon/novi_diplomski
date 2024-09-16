@@ -1,4 +1,4 @@
-<%= simple_form_for [topic, quiz, text_input_question], html: { class: "form quiz__body" } do |f| %>
+<%= simple_form_for [topic, quiz, text_input_question], html: { class: "form quiz__body quiz__new_questions" } do |f| %>
   <%= form_error_notification(text_input_question) %>
 
   <%= f.input :question_text, html5: true, input_html: { autofocus: true } %>

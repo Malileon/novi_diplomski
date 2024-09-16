@@ -1,0 +1,35 @@
+.auth {
+  width: 100%;
+  padding-right: var(--space-xs);
+  padding-left: var(--space-xs);
+  margin-left: auto;
+  margin-right: auto;
+
+  @include media(tabletAndUp) {
+    padding-right: var(--space-m);
+    padding-left: var(--space-m);
+    max-width: 20rem;
+  }
+
+  &__item {
+    margin-bottom: var(--space-xs);
+  }
+
+  #auth-button {
+    color: var(--color-white);
+    margin-bottom: var(--space-xs);
+    background-image: linear-gradient(
+      to right,
+      var(--color-primary),
+      var(--color-primary-rotate)
+    );
+
+    &:hover,
+    &:focus,
+    &:focus-within,
+    &:active {
+      color: var(--color-white);
+      filter: saturate(1.4) brightness(115%);
+    }
+  }
+}

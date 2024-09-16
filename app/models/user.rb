@@ -6,7 +6,7 @@ class User < ApplicationRecord
   # devise :database_authenticatable, :registerable,
   #        :recoverable, :rememberable, :validatable
   
-  devise :database_authenticatable, :validatable
+  devise :database_authenticatable, :validatable, :registerable
 
   has_many :quizzes
   has_many :quiz_sessions

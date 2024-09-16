@@ -28,7 +28,7 @@
             <% end %>
           <% end %>
         </div>
-      <% end %>
+      <% else %>
         <% if quiz_owner(@quiz) %>
           <div class="quiz__actions">
             <%= button_to "Delete",
@@ -44,6 +44,7 @@
         <div class="choice__name">
           Correct answer is: <%= text_input_question.answer %>
         </div>
+        <% end %>
       <% end %>
     </div>
   </div>

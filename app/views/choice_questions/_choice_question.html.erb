@@ -19,9 +19,7 @@
     <% end %>
 
     <%= turbo_frame_tag nested_dom_id(@topic, @quiz, choice_question, "choices") do %>
-      <% if(defined?(choices) and choices != nil) %>
-        <%= render choices, topic: @topic, quiz: @quiz, choice_question: choice_question %>
-      <% end %>
+      <%= render choice_question.choice, topic: @topic, quiz: @quiz, choice_question: choice_question %>
     <% end %>
 
     <% if defined?(user_answers) %>
@@ -44,17 +42,18 @@
           <span class="choice__corr-answers"><%= choice_question.get_correct_choices("value").join(', ') %></span>.
         </div>
       <% end %>
+    <% else %>
+      <% if quiz_owner(@quiz) %>
+        <div class="nesto_footer">
+          <%= link_to "Add choice", 
+                      [:new, @topic, @quiz, choice_question, :choice],
+                      data: { turbo_frame: nested_dom_id(@topic, @quiz, choice_question, "new_choice") },
+                      class: "btn btn--primary" %>
+        </div>
+      <% end %>
     <% end %>
 
     <%= turbo_frame_tag nested_dom_id(@topic, @quiz, choice_question, "new_choice") %>
 
-    <% if quiz_owner(@quiz) %>
-      <div class="nesto_footer">
-        <%= link_to "Add choice", 
-                    [:new, @topic, @quiz, choice_question, :choice],
-                    data: { turbo_frame: nested_dom_id(@topic, @quiz, choice_question, "new_choice") },
-                    class: "btn btn--primary" %>
-      </div>
-    <% end %>
   </div>
 <% end %>

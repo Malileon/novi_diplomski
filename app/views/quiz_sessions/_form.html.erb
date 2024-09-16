@@ -2,16 +2,18 @@
   <% @questions.each do |question| %>
     <div class="question">
       <% if question.get_type == 'TextInputQuestion' %>
-        <h3><%= question.question_text %></h3>
-        <%= form.text_field "quiz_session[answers][#{question.id}]", placeholder: "Enter your answer" %>
+        <h3 class="auth__item"><%= question.question_text %></h3>
+        <%= form.text_field "quiz_session[answers][#{question.id}]", 
+                            placeholder: "Enter your answer",
+                            class: "auth__item form__smaller_input" %>
       
       <% elsif question.get_type == 'ChoiceQuestion' %>
         <% unless question.choice.empty? %>
-        <h3><%= question.question_text %></h3>
+        <h3 class="auth__item"><%= question.question_text %></h3>
           <% question.choice.each do |choice| %>
             <div>
               <%= form.check_box "quiz_session[answers][#{question.id}]", { multiple: true }, choice.id, nil %>
-              <%= form.label "quiz_session[answers][#{question.id}]", choice.value %>
+              <%= form.label "quiz_session[answers][#{question.id}]", choice.value, class:"auth__item" %>
             </div>
           <% end %>
         <% end %>
@@ -19,5 +21,6 @@
     </div>
   <% end %>
 
-  <%= form.submit "Submit Answers", { turbo: false } %>
+  <%= form.submit "Submit Answers", 
+                  class: "btn btn--primary" %>
 <% end %>
