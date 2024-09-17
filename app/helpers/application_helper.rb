@@ -16,6 +16,11 @@ module ApplicationHelper
   end
 
   def quiz_owner(quiz)
-    quiz.user_id == current_user.id
+    if current_user != nil
+      quiz.user_id == current_user.id
+    else
+      false
+    end
+
   end
 end

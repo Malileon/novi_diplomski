@@ -2,8 +2,8 @@
 
 firstChoiceQuestion:
   quiz: first
-  question_text: First choice question text
+  question_text: This is question text of the first choice question.
 
 secondChoiceQuestion:
   quiz: first
-  question_text: Second choice question text
+  question_text: This is question text of the second choice question

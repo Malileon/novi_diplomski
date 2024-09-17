@@ -20,6 +20,14 @@
       <% end %>
     </div>
   <% end %>
+  
+  <% if current_user == nil %>
+    <h3 class="auth__item">Please enter your username</h3>
+    <%= form.text_field "quiz_session[guest_name]", 
+                        placeholder: "Please enter your username",
+                        class: "auth__item form__smaller_input",
+                        required: true %>
+  <% end %>
 
   <%= form.submit "Submit Answers", 
                   class: "btn btn--primary" %>

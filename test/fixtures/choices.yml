@@ -2,15 +2,15 @@
 
 first:
   choice_question: firstChoiceQuestion
-  value: First choice (true)
+  value: This is first choice for the first choice question. This choice is true
   is_correct: 1
 
 second:
   choice_question: firstChoiceQuestion
-  value: Second choice
+  value: This is second choice for the first choice question. This choice is false
   is_correct: 0
 
 thid:
   choice_question: secondChoiceQuestion
-  value: First Choice for second question
+  value: This is first choice for the second choice question. This choice is false.
   is_correct: 1

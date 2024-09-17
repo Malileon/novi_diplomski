@@ -21,7 +21,11 @@ class QuizSessionsController < ApplicationController
     points = @quiz_session.evaluate(params[:quiz_session][:answers], @quiz)
     @quiz_session.points = points
 
-    unless @quiz.user_id == current_user.id
+    
+    @quiz_session.guest_name = params[:quiz_session][:guest_name] if params[:quiz_session][:guest_name]
+    @quiz_session.user_type = "guest" if params[:quiz_session][:guest_name]
+
+    if @quiz_session.guest_name
       if @quiz_session.save
         respond_to do |format|
           format.html { redirect_to topic_quiz_path(@topic, @quiz), notice: "Quiz successfully submitted." }
@@ -30,13 +34,24 @@ class QuizSessionsController < ApplicationController
       else
         render :new, status: :unprocessable_entity
       end
+    else 
+      unless @quiz.user_id == current_user.id
+        if @quiz_session.save
+          respond_to do |format|
+            format.html { redirect_to topic_quiz_path(@topic, @quiz), notice: "Quiz successfully submitted." }
+            format.turbo_stream { flash.now[:notice] = "Quiz successfully submitted." }
+          end
+        else
+          render :new, status: :unprocessable_entity
+        end
+      end
     end
   end
 
   private
   def quiz_session_params
-    if current_user
-      params.require(:quiz_session).permit(:answers).merge(user_id: current_user.id, user_type: "user", quiz_id: @quiz.id)
+    if current_user != nil
+      params.require(:quiz_session).permit(:answers, :guest_name).merge(user_id: current_user.id, user_type: "user", quiz_id: @quiz.id)
     else
       #todo guest
     end

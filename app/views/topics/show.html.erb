@@ -5,10 +5,12 @@
       <%= @topic.name %>
     </h1>
 
-    <%= link_to "New Quiz",
-                new_topic_quiz_path(@topic),
-                class: "btn btn--primary",
-                data: { turbo_frame: nested_dom_id(@topic, "new_quiz") } %>
+    <% if current_user != nil %>
+      <%= link_to "New Quiz",
+                  new_topic_quiz_path(@topic),
+                  class: "btn btn--primary",
+                  data: { turbo_frame: nested_dom_id(@topic, "new_quiz") } %>
+    <% end %>
   </div>
 
   <%= turbo_frame_tag nested_dom_id(@topic, "new_quiz") %>

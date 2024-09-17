@@ -3,10 +3,12 @@
   <div class="header">
     <h1>Topics</h1>
     <%# if admin TODO... %>
-      <%= link_to "New topic",
-                  new_topic_path,
-                  class: "btn btn--primary",
-                  data: { turbo_frame: dom_id(Topic.new) } %>
+      <% if current_user != nil %>
+        <%= link_to "New topic",
+                    new_topic_path,
+                    class: "btn btn--primary",
+                    data: { turbo_frame: dom_id(Topic.new) } %>
+      <% end %>
     <%# end %>
   </div>
 

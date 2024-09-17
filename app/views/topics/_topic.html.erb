@@ -4,15 +4,17 @@
                 topic_path(topic), 
                 data: { turbo_frame: "_top" } %>
     <%# TODO: Admin kad se doda, ako je admin bla bla %>
-      <div class="topic__actions">
-        <%= button_to "Delete",
-                      topic_path(topic),
-                      method: :delete,
+      <% if current_user != nil %>
+        <div class="topic__actions">
+          <%= button_to "Delete",
+                        topic_path(topic),
+                        method: :delete,
+                        class: "btn btn--light" %>
+          <%= link_to "Edit",
+                      edit_topic_path(topic),
                       class: "btn btn--light" %>
-        <%= link_to "Edit",
-                    edit_topic_path(topic),
-                    class: "btn btn--light" %>
-      </div>
+        </div>
+      <% end %>
     <%# end %>
   </div>
 <% end %>

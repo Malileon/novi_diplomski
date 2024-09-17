@@ -2,10 +2,10 @@
 
 firstText:
   quiz: first
-  question_text: First text question text
+  question_text: This is question text for the first quiz. Correct answer to this question is "Answer1"
   answer: Answer1
 
 secondText:
   quiz: first
-  question_text: Second text question text
+  question_text: This is the second question. Correct answer to this is "Answer2"
   answer: Answer2
