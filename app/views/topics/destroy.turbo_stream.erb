@@ -1,7 +1,6 @@
 <%= turbo_stream.remove @topic %>
 <%= render_turbo_stream_flash_messages %>
 
-<%#TODO: Napraviti da ovo rads turbom%>
 <% unless Topic.first %>
   <% turbo_stream.update Topic.new do %>
     <%= render "topics/empty_state" %>

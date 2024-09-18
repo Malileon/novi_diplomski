@@ -2,7 +2,7 @@
   <div class="auth">
     <h2 class="auth__item">Log in</h2>
 
-    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), input_html: {data: { turbo: "false"}}) do |f| %>
       <div>
         <%= f.input :email,
                     required: false,

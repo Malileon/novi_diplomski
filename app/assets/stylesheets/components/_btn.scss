@@ -77,4 +77,8 @@
       color: var(--color-white);
     }
   }
+
+  &__top {
+    margin-top: var(--space-xs);
+  }
 }

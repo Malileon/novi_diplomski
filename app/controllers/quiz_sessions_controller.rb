@@ -61,7 +61,6 @@ class QuizSessionsController < ApplicationController
   end
 
   def set_user
-    #TODO: guest
     @user = current_user
   end
 

@@ -1,6 +1,6 @@
 <%= turbo_frame_tag nested_dom_id(@topic, @quiz, text_input_question) do %>
   <div class="quiz__body">
-    <div class="quiz__header">
+    <div class="quiz__header quiz__header_padding">
       <%= text_input_question.question_text %>
       <% if defined?(user_answers) %>
         </div>

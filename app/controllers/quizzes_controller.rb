@@ -53,6 +53,10 @@ class QuizzesController < ApplicationController
     end
   end
 
+  def scoreboard
+    
+  end
+
   private
   def quiz_params
     params.require(:quiz).permit(:name).merge(user_id: current_user.id)

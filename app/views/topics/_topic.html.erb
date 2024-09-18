@@ -5,7 +5,6 @@
                 data: { turbo_frame: "_top" } %>
     <% if current_user != nil %>
       <% if current_user.is_admin == 1%>
-        <% puts "tu sam" %>
         <div class="topic__actions">
           <%= button_to "Delete",
                         topic_path(topic),

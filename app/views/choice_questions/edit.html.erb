@@ -6,9 +6,11 @@
   </div>
 
   <%= turbo_frame_tag dom_id(@choice_question, :edit) do %>
+    <div class="quiz__new_questions">
       <%= render "form",
                 topic: @topic,
                 quiz: @quiz,
                 choice_question: @choice_question %>
+    </div>
   <% end %>
 </main>

@@ -2,27 +2,30 @@
   <% @questions.each do |question| %>
     <div class="question">
       <% if question.get_type == 'TextInputQuestion' %>
-        <h3 class="auth__item"><%= question.question_text %></h3>
-        <%= form.text_field "quiz_session[answers][#{question.id}]", 
-                            placeholder: "Enter your answer",
-                            class: "auth__item form__smaller_input" %>
-      
+        <div class="quiz__body">
+          <h3 class="auth__item"><%= question.question_text %></h3>
+          <%= form.text_field "quiz_session[answers][#{question.id}]", 
+                              placeholder: "Enter your answer",
+                              class: " form__input" %>
+        </div>
       <% elsif question.get_type == 'ChoiceQuestion' %>
         <% unless question.choice.empty? %>
-        <h3 class="auth__item"><%= question.question_text %></h3>
+        <div class="quiz__body">
+          <h3 class="auth__item"><%= question.question_text %></h3>
           <% question.choice.each do |choice| %>
             <div>
-              <%= form.check_box "quiz_session[answers][#{question.id}]", { multiple: true }, choice.id, nil %>
+              <%= form.check_box "quiz_session[answers][#{question.id}]", { multiple: true, class:"form__checkbox" }, choice.id, nil %>
               <%= form.label "quiz_session[answers][#{question.id}]", choice.value, class:"auth__item" %>
             </div>
           <% end %>
+        </div>
         <% end %>
       <% end %>
     </div>
   <% end %>
   
   <% if current_user == nil %>
-    <h3 class="auth__item">Please enter your username</h3>
+    <h3 class="auth__item">Please enter your guest name</h3>
     <%= form.text_field "quiz_session[guest_name]", 
                         placeholder: "Please enter your username",
                         class: "auth__item form__smaller_input",
@@ -30,5 +33,5 @@
   <% end %>
 
   <%= form.submit "Submit Answers", 
-                  class: "btn btn--primary" %>
+                  class: "btn btn--primary btn__top" %>
 <% end %>

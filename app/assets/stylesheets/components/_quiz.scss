@@ -7,6 +7,9 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--space-xs);
+  }
+
+  &__header_padding {
     padding-bottom: var(--space-xs);
   }
 

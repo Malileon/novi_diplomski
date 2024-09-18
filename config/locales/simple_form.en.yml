@@ -2,14 +2,15 @@ en:
   simple_form:
     placeholders:
       topic:
-        name: Name of your topic
+        name: Please enter a name of your topic
+      quiz:
+        name: Please enter a name of your quiz
       text_input_question:
         question_text: Question
         answer: Answer
       choice_question:
         question_text: Question
       choice:
-        is_correct: Stajeovooadisadjasdjasd
         value: Option
     labels:
       topic:
@@ -28,5 +29,8 @@ en:
       text_input_question:
         create: Create text question
         update: Update text question
+      choice_question:
+        create: Create choice question
+        update: Update choice question
       choice:
         is_correct: Is correct

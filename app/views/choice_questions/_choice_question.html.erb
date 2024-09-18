@@ -1,7 +1,7 @@
 <%= turbo_frame_tag nested_dom_id(@topic, @quiz, choice_question) do %>
   <div class="quiz__body">
     <%= turbo_frame_tag dom_id(choice_question, :edit) do %>
-      <div class="quiz__header">
+      <div class="quiz__header quiz__header_padding">
         <%= choice_question.question_text %>
         <% choices = choice_question.get_choices if defined?(user_answers) %>
         <% if quiz_owner(@quiz) and not defined?(user_answers) %>
@@ -22,6 +22,8 @@
       <%= render choice_question.choice, topic: @topic, quiz: @quiz, choice_question: choice_question %>
     <% end %>
 
+    <%= turbo_frame_tag nested_dom_id(@topic, @quiz, choice_question, "new_choice") %>
+    
     <% if defined?(user_answers) %>
       <% if user_answers.has_key?(choice_question.id.to_s) %>
         <% if(choice_question.all_correct(user_answers.fetch(choice_question.id.to_s))) %>
@@ -52,8 +54,6 @@
         </div>
       <% end %>
     <% end %>
-
-    <%= turbo_frame_tag nested_dom_id(@topic, @quiz, choice_question, "new_choice") %>
 
   </div>
 <% end %>
