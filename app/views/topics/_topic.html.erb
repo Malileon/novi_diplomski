@@ -3,8 +3,9 @@
     <%= link_to topic.name, 
                 topic_path(topic), 
                 data: { turbo_frame: "_top" } %>
-    <%# TODO: Admin kad se doda, ako je admin bla bla %>
-      <% if current_user != nil %>
+    <% if current_user != nil %>
+      <% if current_user.is_admin == 1%>
+        <% puts "tu sam" %>
         <div class="topic__actions">
           <%= button_to "Delete",
                         topic_path(topic),
@@ -15,6 +16,6 @@
                       class: "btn btn--light" %>
         </div>
       <% end %>
-    <%# end %>
+    <% end %>
   </div>
 <% end %>

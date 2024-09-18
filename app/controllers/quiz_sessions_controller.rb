@@ -23,7 +23,6 @@ class QuizSessionsController < ApplicationController
 
     
     @quiz_session.guest_name = params[:quiz_session][:guest_name] if params[:quiz_session][:guest_name]
-    @quiz_session.user_type = "guest" if params[:quiz_session][:guest_name]
 
     if @quiz_session.guest_name
       if @quiz_session.save
@@ -53,7 +52,7 @@ class QuizSessionsController < ApplicationController
     if current_user != nil
       params.require(:quiz_session).permit(:answers, :guest_name).merge(user_id: current_user.id, user_type: "user", quiz_id: @quiz.id)
     else
-      #todo guest
+      params.require(:quiz_session).permit(:answers, :guest_name).merge(user_type: "guest", quiz_id: @quiz.id)
     end
   end
 

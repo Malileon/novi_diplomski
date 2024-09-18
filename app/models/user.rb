@@ -11,7 +11,10 @@ class User < ApplicationRecord
   has_many :quizzes
   has_many :quiz_sessions
 
+  validates :username, presence: true
+  validates :is_admin, numericality: { only_integer: true, in: 0..1 }
+
   def name
-    email.split("@").first.capitalize
+    username.capitalize
   end
 end

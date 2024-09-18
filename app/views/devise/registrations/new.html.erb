@@ -6,11 +6,15 @@
       <%= f.error_notification %>
 
       <div class="form-inputs">
+        <%= f.input :username,
+                    required: true,
+                    placeholder: "Enter your username",
+                    input_html: { class: "auth__item" } %>
         <%= f.input :email,
                     required: true,
                     autofocus: true,
                     placeholder: "Enter your email",
-                    input_html: { autocomplete: "email", class: "auth__item" }%>
+                    input_html: { autocomplete: "email", class: "auth__item" } %>
         <%= f.input :password,
                     required: true,
                     placeholder: "Enter your password",

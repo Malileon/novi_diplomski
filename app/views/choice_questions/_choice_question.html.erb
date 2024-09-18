@@ -4,7 +4,7 @@
       <div class="quiz__header">
         <%= choice_question.question_text %>
         <% choices = choice_question.get_choices if defined?(user_answers) %>
-        <% if quiz_owner(@quiz) %>
+        <% if quiz_owner(@quiz) and not defined?(user_answers) %>
           <div class="quiz__actions">
             <%= button_to "Delete",
                           [@topic, @quiz, choice_question],

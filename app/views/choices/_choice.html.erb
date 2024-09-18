@@ -7,7 +7,7 @@
           <span> - This answer is correct</span>
         <% end %>
       </div>
-      <% if quiz_owner(@quiz) %>
+      <% if (quiz_owner(@quiz) and !request.original_url.ends_with?("/quiz_sessions")) %>
         <div class="choice__actions">
           <%= button_to "Delete",
                         [@topic, @quiz, choice_question, choice],

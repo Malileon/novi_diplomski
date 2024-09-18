@@ -17,10 +17,10 @@ module ApplicationHelper
 
   def quiz_owner(quiz)
     if current_user != nil
+      return true if current_user.is_admin
       quiz.user_id == current_user.id
     else
       false
     end
-
   end
 end
