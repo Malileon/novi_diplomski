@@ -17,20 +17,24 @@
                       [:edit, @topic, quiz],
                       class: "btn btn--light" %>
                       
-          <%= link_to "Preview quiz",
-                      new_topic_quiz_quiz_session_path(@topic, quiz),
-                      data: { turbo_frame: "_top" },
-                      class: "btn btn--primary" %>
+          <% if quiz.get_questions(quiz).count != 0 %>
+            <%= link_to "Preview quiz",
+                        new_topic_quiz_quiz_session_path(@topic, quiz),
+                        data: { turbo_frame: "_top" },
+                        class: "btn btn--primary" %>
+          <% end %>
         </div>
       <% else %>
         <h2 class="quiz__title">
           <%= quiz.name %>
         </h2>
 
-        <%= link_to "Start quiz",
-                    new_topic_quiz_quiz_session_path(@topic, quiz),
-                    data: { turbo_frame: "_top" },
-                    class: "btn btn--primary" %>
+        <% if quiz.get_questions(quiz).count != 0 %>
+          <%= link_to "Start quiz",
+                      new_topic_quiz_quiz_session_path(@topic, quiz),
+                      data: { turbo_frame: "_top" },
+                      class: "btn btn--primary" %>
+        <% end %>
       <% end %>
     </div>
   </div>

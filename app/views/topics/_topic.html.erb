@@ -1,10 +1,14 @@
-<%= turbo_frame_tag topic do %>
+<%= turbo_frame_tag topic, class:"topic__turbo_frame" do %>
   <div class="topic">
     <%= link_to topic.name, 
                 topic_path(topic), 
-                data: { turbo_frame: "_top" } %>
+                data: { turbo_frame: "_top" },
+                class: "topic__center" %>
+    
+    <%= link_to image_tag(topic.picture, class: "topic__image"), topic_path(topic), data: { turbo_frame: "_top" } %>
+
     <% if current_user != nil %>
-      <% if current_user.is_admin == 1%>
+      <% if current_user.is_admin == 1 %>
         <div class="topic__actions">
           <%= button_to "Delete",
                         topic_path(topic),

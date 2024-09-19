@@ -1,11 +1,19 @@
-<%= simple_form_for topic, html: { class: "topic form" } do |f| %>
+<%= simple_form_for topic, html: { class: "topic form topic__form" } do |f| %>
   <% if topic.errors.any? %>
     <div class="error-message">
       <%= topic.errors.full_messages.to_sentence.capitalize %>
     </div>
   <% end %>
 
-  <%= f.input :name, input_html: { autofocus: true } %>
-  <%= link_to "Cancel", topics_path, class: "btn btn--light" %>
-  <%= f.submit class: "btn btn--secondary" %>
+  <div class="topic__center">
+    <%= f.input :name, input_html: { autofocus: true } %>
+  </div>
+  <div class="form__fullwidth">
+    <%= f.label :pitanje, label: "Please select topic picture below:"%>
+    <%= f.file_field :picture %>
+  </div>
+  <div class="topic__actions">
+    <%= link_to "Cancel", topics_path, class: "btn btn--light" %>
+    <%= f.submit class: "btn btn--secondary" %>
+  </div>
 <% end %>

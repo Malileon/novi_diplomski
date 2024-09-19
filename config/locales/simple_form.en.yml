@@ -2,7 +2,7 @@ en:
   simple_form:
     placeholders:
       topic:
-        name: Please enter a name of your topic
+        name: Topic name
       quiz:
         name: Please enter a name of your quiz
       text_input_question:

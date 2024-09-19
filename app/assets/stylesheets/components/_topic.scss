@@ -1,8 +1,8 @@
 .topic {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-s);
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--space-xs);
 
   background-color: var(--color-white);
   border-radius: var(--border-radius);
@@ -10,14 +10,65 @@
   margin-bottom: var(--space-m);
   padding: var(--space-xs);
 
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 20rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  &__center {
+    width: 95%;
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+    align-self: flex-start;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  &__turbo_frame {
+    flex: 0 1 auto;
+    width: calc(50% - 20px);
+  }
+
+  &__image {
+    width: 95%;
+    height: auto;
+    max-height: 13rem;
+  }
+
+  &__form {
+    max-width: 18rem;
+  }
+
   @include media(tabletAndUp) {
     padding: var(--space-xs) var(--space-m);
+    &__turbo_frame {
+      width: calc(33.333% - 20px);
+    }
   }
 
   &__actions {
     display: flex;
     flex: 0 0 auto;
-    align-self: flex-start;
+    align-self: flex-end;
     gap: var(--space-xs);
+    width: 100%;
+    justify-content: space-evenly;
   }
+}
+
+#topic_picture {
+  max-width: 100%;
+}
+
+#new_topic {
+  margin-left: auto;
+  margin-right: auto;
 }
