@@ -1,7 +1,7 @@
 class QuizzesController < ApplicationController
   before_action :set_user
   before_action :set_topic
-  before_action :set_quiz, only:[:destroy, :show, :edit, :update]
+  before_action :set_quiz, only:[:destroy, :show, :edit, :update, :scoreboard]
   
   def show
     @questions = @quiz.get_questions(@quiz)
@@ -54,7 +54,17 @@ class QuizzesController < ApplicationController
   end
 
   def scoreboard
-    
+    @top_sessions = []
+    unique_users = Set.new
+    sessions = @quiz.quiz_sessions.sort_by{ |session| session.points }.reverse
+
+    sessions.each do |session|
+      unless unique_users.include?(session.user_id)
+        @top_sessions << session
+        unique_users.add(session.user_id)
+      end
+      break if @top_sessions.size == 5
+    end
   end
 
   private

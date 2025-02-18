@@ -9,6 +9,10 @@
     gap: var(--space-xs);
   }
 
+  &__bold {
+    font-weight: bold;
+  }
+
   &__header_padding {
     padding-bottom: var(--space-xs);
   }

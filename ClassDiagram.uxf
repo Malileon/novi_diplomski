@@ -1,0 +1,53 @@
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>432</x><y>48</y><w>112</w><h>64</h></coordinates><panel_attributes>Topic
+--
+quizzes: Quiz[]
+name: string
+picture: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>424</x><y>160</y><w>128</w><h>88</h></coordinates><panel_attributes>Quiz
+--
+questions: Questionable[]
+sessions: QuizSessions[]
+topic: Topic
+name: string
+author: User</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>384</x><y>296</y><w>224</w><h>56</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
+Questionable
+--
+get_type(): ChoiceQuestion | TextInputQuestion</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>320</x><y>400</y><w>184</w><h>96</h></coordinates><panel_attributes>ChoiceQuestion
+--
+question_text: string
+--
+get_choices(): Choice[]
+get_correct_choices(property): string[]
+check_all_correct(user_answers): boolean
+get_user_values(): Choice[]	</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>544</y><w>96</w><h>56</h></coordinates><panel_attributes>Choice
+--
+value: string
+is_correct: boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>520</x><y>400</y><w>104</w><h>56</h></coordinates><panel_attributes>TextInputQuestion
+--
+question_text: string
+answer: string
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>216</x><y>64</y><w>152</w><h>96</h></coordinates><panel_attributes>QuizSession
+--
+quiz: Quiz
+user_type: string
+user: User | null
+guest: null | string
+points: decimal
+--
+evaluate(answers, quiz): decimal</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>232</x><y>208</y><w>112</w><h>72</h></coordinates><panel_attributes>User
+--
+username: string
+email: string
+password: hash
+is_admin: boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>408</x><y>344</y><w>104</w><h>72</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;70;10;30;110;30;110;10</additional_attributes></element><element><id>Relation</id><coordinates><x>488</x><y>344</y><w>104</w><h>72</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>110;70;110;30;10;30;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>400</x><y>488</y><w>32</w><h>72</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=*</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>480</x><y>240</y><w>32</w><h>72</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=*</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>480</x><y>104</y><w>32</w><h>72</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=*</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>280</x><y>152</y><w>32</w><h>72</h></coordinates><panel_attributes>lt=-
+m1=*
+m2=1</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>96</y><w>80</w><h>120</h></coordinates><panel_attributes>lt=-
+m1=*
+m2=1</panel_attributes><additional_attributes>10;10;50;10;50;120;80;120</additional_attributes></element><element><id>Relation</id><coordinates><x>336</x><y>224</y><w>104</w><h>32</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=*</panel_attributes><additional_attributes>10;10;110;10</additional_attributes></element></diagram>

@@ -26,7 +26,7 @@
     
     <% if defined?(user_answers) %>
       <% if user_answers.has_key?(choice_question.id.to_s) %>
-        <% if(choice_question.all_correct(user_answers.fetch(choice_question.id.to_s))) %>
+        <% if(choice_question.check_all_correct(user_answers.fetch(choice_question.id.to_s))) %>
           <div>
             You checked all the correct choices: 
             <span class="choice__corr-answers"><%= choice_question.get_correct_choices("value").join(', ') %></span>.

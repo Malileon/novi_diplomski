@@ -8,6 +8,11 @@
                       data: { turbo_frame: "_top" } %>
         </h2>
         <div class="quiz__actions">
+          <%= button_to "Scoreboard",
+                        scoreboard_topic_quiz_path(@topic, quiz),
+                        method: :get, 
+                        data: { turbo_frame: "_top" },
+                        class: "btn btn--light" %>
           <%= button_to "Delete",
                         [@topic, quiz],
                         method: :delete,
@@ -30,10 +35,21 @@
         </h2>
 
         <% if quiz.get_questions(quiz).count != 0 %>
-          <%= link_to "Start quiz",
-                      new_topic_quiz_quiz_session_path(@topic, quiz),
-                      data: { turbo_frame: "_top" },
-                      class: "btn btn--primary" %>
+          <div class="quiz__actions">
+            <div class="quiz__header quiz__bold">
+              Author: 
+              <%= User.find(quiz.user_id).username.capitalize %>
+            </div>
+            <%= button_to "Scoreboard",
+                          scoreboard_topic_quiz_path(@topic, quiz),
+                          method: :get, 
+                          data: { turbo_frame: "_top" },
+                          class: "btn btn--light" %>
+            <%= link_to "Start quiz",
+                        new_topic_quiz_quiz_session_path(@topic, quiz),
+                        data: { turbo_frame: "_top" },
+                        class: "btn btn--primary" %>
+          </div>
         <% end %>
       <% end %>
     </div>

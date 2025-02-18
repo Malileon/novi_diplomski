@@ -1,0 +1,67 @@
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>264</x><y>328</y><w>88</w><h>72</h></coordinates><panel_attributes>User
+--
+username: string
+password: hash
+email: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>656</x><y>144</y><w>80</w><h>72</h></coordinates><panel_attributes>Admin
+--
+password: hash
+email: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>416</x><y>216</y><w>144</w><h>112</h></coordinates><panel_attributes>Quiz
+--
+questions: QuizQuestion[]
+category: QuizCategory
+name: string
+author: User
+is_public: boolean
+session: QuizSessions[]</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>368</x><y>360</y><w>184</w><h>112</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
+Questionable
+--
+is_correct(answer): boolean
+get_question_text(): string
+get_choices(): Choice[] | null
+get_correct_answer(): Choice | string
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>304</x><y>496</y><w>184</w><h>112</h></coordinates><panel_attributes>ChoiceQuestion
+--
+question_text: string
+answers: Choice[]</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>520</x><y>496</y><w>184</w><h>136</h></coordinates><panel_attributes>TextInputQuestion
+-
+question_text: string
+answer: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>320</x><y>656</y><w>152</w><h>96</h></coordinates><panel_attributes>Choice
+--
+value: string
+is_correct: boolean
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>384</x><y>56</y><w>200</w><h>112</h></coordinates><panel_attributes>QuizCategory
+--
+quizes: Quiz[]
+name: string
+image: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>208</x><y>56</y><w>144</w><h>128</h></coordinates><panel_attributes>QuizSession
+--
+quiz: Quiz
+examinee: Examineeable
+duration: DateTime
+correct_answers: integer
+total_answers: integer
+examineeable_id: integer
+examineeable_type: string
+is_finished: boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>240</x><y>208</y><w>112</w><h>88</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
+Examineeable
+--
+get_name(): string
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>384</x><y>464</y><w>80</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;40;10;20;80;20;80;10</additional_attributes></element><element><id>Relation</id><coordinates><x>448</x><y>464</y><w>184</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>210;40;210;20;10;20;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>384</x><y>600</y><w>40</w><h>72</h></coordinates><panel_attributes>lt=-
+m1=2..n
+m2=1</panel_attributes><additional_attributes>10;70;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>288</x><y>288</y><w>24</w><h>56</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;50;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>480</x><y>320</y><w>280</w><h>48</h></coordinates><panel_attributes>lt=-
+m1=n
+m2=1
+</panel_attributes><additional_attributes>320;40;320;30;10;30;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>472</x><y>160</y><w>32</w><h>72</h></coordinates><panel_attributes>lt=-
+m1=n
+m2=n</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>344</x><y>104</y><w>88</w><h>184</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>90;210;20;210;20;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>264</x><y>176</y><w>24</w><h>48</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;40;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>144</x><y>272</y><w>88</w><h>72</h></coordinates><panel_attributes>Guest
+-
+username: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>344</x><y>288</y><w>88</w><h>96</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>90;10;20;10;20;100;10;100</additional_attributes></element><element><id>UMLClass</id><coordinates><x>632</x><y>352</y><w>184</w><h>136</h></coordinates><panel_attributes>QuizQuestion
+-
+quiz: Quiz
+question: Questionable
+questionable_id: integer
+questionable_type: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>544</x><y>408</y><w>104</w><h>40</h></coordinates><panel_attributes>lt=-
+m1=n
+m2=1
+</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>176</x><y>240</y><w>80</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;40;10;10;80;10</additional_attributes></element></diagram>

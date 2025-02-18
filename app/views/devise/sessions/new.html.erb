@@ -1,4 +1,5 @@
 <main class="container">
+  <%= link_to sanitize("&larr; Back to home page"), root_path %>
   <div class="auth">
     <h2 class="auth__item">Log in</h2>
 
@@ -19,6 +20,7 @@
       <div>
         <%= f.button :submit,
                     "Log in",
+                    data: {turbo: false},
                     id: 'auth-button' %>
       </div>
     <% end %>

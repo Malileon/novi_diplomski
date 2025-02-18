@@ -1,9 +1,12 @@
 <main class="container">
-  <h1>Quiz page</h1>
+  <h1 class="home__center home__title">Quiz page</h1>
 
-  <% if user_signed_in? %>
+  <div class="home__center">
+    <div class="home__title">
+      A quiz page with <%= Quiz.all.count %> quizzes<br>
+      in <%= Topic.all.count %> topics.
+    </div>
     <%= link_to "View topics", topics_path, class: "btn btn--dark" %>
-  <% else %>
     <%= link_to "Sign in", new_user_session_path, class: "btn btn--dark" %>
-  <% end %>
+  </div>
 </main>

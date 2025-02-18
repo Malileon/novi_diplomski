@@ -1,0 +1,31 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to topic"), topic_path(@quiz.topic) %>
+  <div class="header">
+    <h1>
+      <%= @quiz.name %> scoreboard
+    </h1>
+  </div>
+  <% if @top_sessions.empty? %>
+    <h2 class="quiz__header">
+      This quiz still wasn't answered by users or guests.
+    </h2>
+  <% else %>
+    <h2>Showing 5 most recent top scorers</h2>
+    <% @top_sessions.each do |session| %>
+      <div class="quiz__body">
+        <div class="quiz__header quiz__title">
+          <div>
+            <% if session.user_type == "user" %>
+              <%= User.find(session.user_id).username %>
+            <% else %>
+              <%= "Guest_" + session.guest_name %>
+            <% end %>
+          </div>
+          <div>
+            <%=session.points%> / <%= @quiz.get_filled_questions_count %> points
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</main>

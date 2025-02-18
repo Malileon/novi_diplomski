@@ -1,0 +1,11 @@
+.home {
+  &__center {
+    width: 95%;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: xx-large;
+    padding-bottom: var(--space-xxxxl);
+  }
+}

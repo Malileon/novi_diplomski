@@ -21,7 +21,7 @@ class ChoiceQuestion < ApplicationRecord
     correct_properties
   end
 
-  def all_correct(user_answers)
+  def check_all_correct(user_answers)
     user_correct = 0
     user_answers.each do |user_answer|
       if self.get_correct_choices.include?(user_answer.to_i)
